@@ -1,6 +1,6 @@
 <?php
-require_once('Models/landingPage_model.php');
-require_once('Views/landingPage_view.php');
+require_once('../../Models/landingPage_model.php');
+require_once('../../Views/landingPage_view.php');
 
 class landingPage_controller{
 

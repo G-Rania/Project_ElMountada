@@ -1,6 +1,6 @@
 <?php
-require_once('Controllers/general/header_controller.php');
-require_once('ConnectionDB/database_connection.php');
+require_once('../../Controllers/general/header_controller.php');
+require_once('../../ConnectionDB/database_connection.php');
 
 class header_model{
 

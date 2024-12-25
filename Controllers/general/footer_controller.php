@@ -1,6 +1,6 @@
 <?php
-require_once('Models/general/footer_model.php');
-require_once('Views/general/footer_view.php');
+require_once('../../Models/general/footer_model.php');
+require_once('../../Views/general/footer_view.php');
 
 class footer_controller{
 

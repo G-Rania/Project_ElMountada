@@ -1,5 +1,5 @@
 <?php
-require_once('Controllers/general/header_controller.php');
+require_once('../../Controllers/general/header_controller.php');
 
 class header_view {
     public function head_description() {
@@ -7,21 +7,21 @@ class header_view {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="output.css" rel="stylesheet" />
-            <script src="jquery-3.7.1.min.js"></script>
+            <link href="../../output.css" rel="stylesheet" />
+            <script src="../../jquery-3.7.1.min.js"></script>
         </head>
         <?php
     }
 
    public function header() {
     ?>  
-    <div class="bg-white shadow">
+    <div class="bg-white">
         <div class="flex items-center gap-4 p-2 max-md:flex-col">
             <!-- Logo Section -->
             <div class="flex w-16 max-md:w-full">
                 <img
                     loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/41094202a1aaf6a6d6b3cdd411f380852353af7ae37a006b61528f621b1b4963?placeholderIfAbsent=true&apiKey=d6bf1b26b54d4d00a83d0cde6eba6bf6"
+                    src="../../assets/general/logoElMountada.png"
                     alt="Company Logo"
                     class="object-contain w-full"
                 />
@@ -42,7 +42,7 @@ class header_view {
                             // Submenu
                             $submenu_list = $controller->get_submenu_controller($menu_item['ID']);
                             if (!empty($submenu_list)) {
-                                echo '<div class="fixed z-[9999] left-0 hidden mt-1 w-40 bg-white shadow-md rounded group-hover:block">';
+                                echo '<div class="absolute z-[9999] left-0 hidden mt-1 w-40 bg-white shadow-md rounded group-hover:block">';
                                 foreach ($submenu_list as $submenu_item) {
                                     echo '<a class="block px-3 py-1 text-gray-700 text-xs hover:bg-gray-100" href="' . $submenu_item["lien"] . '">' . $submenu_item["nom"] . '</a>';
                                 }

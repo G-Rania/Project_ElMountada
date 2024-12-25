@@ -1,7 +1,8 @@
 <?php
-require_once('Controllers/landingPage_controller.php');
-require_once('Views/general/header_view.php');
-require_once('Views/general/footer_view.php');
+require_once('../../Controllers/landingPage_controller.php');
+require_once('../../Controllers/User/connexionUser_controller.php');
+require_once('../../Views/general/header_view.php');
+require_once('../../Views/general/footer_view.php');
 
 class landingPage_view {
     public function head_description() {
@@ -9,11 +10,43 @@ class landingPage_view {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="output.css" rel="stylesheet" />
-            <script src="jquery-3.7.1.min.js"></script>
+            <link href="../../output.css" rel="stylesheet" />
+            <script src="../../jquery-3.7.1.min.js"></script>
         </head>
         <?php
     }
+
+   public function header_landingPage_view() {
+    ?>
+    <div class="flex justify-between items-center">
+        <?php
+            // Affichage du header ici
+            $header = new header_view();
+            $header->header();
+        ?>
+        <div class="flex flex-row gap-6 mr-7">
+            <button id="signinBtn" class="text-lg text-white bg-[#339989] hover:bg-[#226e63] px-3 py-1 rounded-full focus:outline-none">
+                <span>Se connecter</span>
+            </button>
+            <button id="signupBtn" class="text-lg text-[#339989] border-[#339989] border-2 hover:bg-[#339989] hover:text-white px-3 py-1 rounded-full focus:outline-none">
+                <span>S'inscrire</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Redirection to signin/signup pages -->
+    <script>
+        document.getElementById('signinBtn').addEventListener('click', function() {
+            window.location.href = '../User/signinUser.php'; 
+        });
+        document.getElementById('signupBtn').addEventListener('click', function() {
+            window.location.href = '../User/signupUser.php'; 
+        });
+    </script>
+
+    <?php
+}
+
 
     public function diaporama() {
         ?>
@@ -82,7 +115,7 @@ class landingPage_view {
         <div class="flex flex-col md:flex-row mb-8 gap-6 items-start font-semibold text-zinc-800 mt-10">
             <img
                 loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/80b691c253258c6b0ac6672eff45959af2a66a022de5a95c433ba9c797952471?placeholderIfAbsent=true&apiKey=d6bf1b26b54d4d00a83d0cde6eba6bf6"
+                src="../../assets/general/moon.png"
                 alt=""
                 class="object-contain shrink-0 w-[150px] aspect-[0.92]"
             />
@@ -105,7 +138,7 @@ class landingPage_view {
             </div>
             <img
                 loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/5e6b9a3846bc70e7b14a097bf88e045d83e5638c8f862f6fb0aa736647c444ec?placeholderIfAbsent=true&apiKey=d6bf1b26b54d4d00a83d0cde6eba6bf6"
+                src="../../assets/general/ellipse.png"
                 alt=""
                 class="object-contain shrink-0 w-[120px]"
             />
@@ -206,7 +239,7 @@ class landingPage_view {
             <div class="flex flex-col items-center w-full max-w-[150px]">
                 <img
                     loading="lazy"
-                    src="assets/general/impact1.png"
+                    src="../../assets/general/impact1.png"
                     alt="Donation impact icon"
                     class="object-contain w-[100px] h-[100px] mb-4"
                 />
@@ -215,7 +248,7 @@ class landingPage_view {
             <div class="flex flex-col items-center w-full max-w-[150px]">
                 <img
                     loading="lazy"
-                    src="assets/general/impact2.png"
+                    src="../../assets/general/impact2.png"
                     alt="Monthly donation statistics icon"
                     class="object-contain w-[100px] h-[100px] mb-4"
                 />
@@ -224,7 +257,7 @@ class landingPage_view {
             <div class="flex flex-col items-center w-full max-w-[150px]">
                 <img
                     loading="lazy"
-                    src="assets/general/impact3.png"
+                    src="../../assets/general/impact3.png"
                     alt="Annual volunteer statistics icon"
                     class="object-contain w-[100px] h-[100px] mb-4"
                 />
@@ -365,10 +398,9 @@ public function partners() {
 
     public function display_landingPage_view() {
         $instance = new landingPage_view();
-        $header = new header_view();
         $footer = new footer_view();
         $instance->head_description();
-        $header->header();
+        $instance->header_landingPage_view();
         $instance->diaporama();
         $instance->donnate();
         $instance->events();

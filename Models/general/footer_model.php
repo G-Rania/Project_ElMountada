@@ -1,6 +1,6 @@
 <?php
-require_once('Controllers/general/footer_controller.php');
-require_once('ConnectionDB/database_connection.php');
+require_once('../../Controllers/general/footer_controller.php');
+require_once('../../ConnectionDB/database_connection.php');
 
 class footer_model{
     

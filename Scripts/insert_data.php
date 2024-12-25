@@ -95,18 +95,18 @@ try {
 
         // Données pour la table Partenaire
         "INSERT INTO Partenaire (nom, description, ville, email, categorie, logo) VALUES
-        ('Hôtel El Djazair', 'Un hôtel 5 étoiles au cœur d\'Alger', 'Alger', 'contact@eldjazairhotel.com', 'Hôtel', 'assets/partenaire/eldjazair_logo.jpg'),
-        ('Clinique Chifa', 'Clinique privée spécialisée en cardiologie', 'Oran', 'contact@cliniquechifa.com', 'Clinique', 'assets/partenaire/chifa_logo.jpg'),
-        ('École Lumière', 'École primaire et secondaire de renom', 'Constantine', 'contact@ecolelumiere.com', 'École', 'assets/partenaire/lumiere_logo.jpg'),
-        ('Agence Voyage Horizons', 'Spécialiste des voyages organisés', 'Tizi Ouzou', 'contact@voyagehorizons.com', 'Agence de Voyage', 'assets/partenaire/horizons_logo.jpg'),
-        ('Hôtel Safir', 'Hôtel économique avec des services de qualité', 'Annaba', 'contact@safirhotel.com', 'Hôtel', 'assets/partenaire/safir_logo.jpg'),
-        ('Clinique Nour', 'Clinique esthétique et dermatologique', 'Alger', 'contact@cliniquenour.com', 'Clinique', 'assets/partenaire/nour_logo.jpg'), 
-        ('École Internationale Ibn Khaldoun', 'École internationale avec programme bilingue', 'Setif', 'contact@ibnkhaldounschool.com', 'École', 'assets/partenaire/ibnkhaldoun_logo.jpg'),
-        ('Agence Voyage Sahara', 'Excursions et circuits dans le sud algérien', 'Ouargla', 'contact@voyagesahara.com', 'Agence de Voyage', 'assets/partenaire/sahara_logo.jpg'),
-        ('Hôtel Tassili', 'Hôtel traditionnel avec vue panoramique', 'Béjaïa', 'contact@tassilihotel.com', 'Hôtel', 'assets/partenaire/tassili_logo.jpg'),
-        ('Clinique Espoir', 'Clinique spécialisée en soins orthopédiques', 'Batna', 'contact@cliniqueespoir.com', 'Clinique', 'assets/partenaire/espoir_logo.jpg'),
-        ('École Élite', 'École privée avec activités parascolaires enrichies', 'Oran', 'contact@ecoleelite.com', 'École', 'assets/partenaire/elite_logo.jpg'),
-        ('Agence Voyage Évasion', 'Voyages personnalisés pour les particuliers et entreprises', 'Alger', 'contact@voyageevasion.com', 'Agence de Voyage', 'assets/partenaire/evasion_logo.jpg');",
+        ('Hôtel El Djazair', 'Un hôtel 5 étoiles au cœur d\'Alger', 'Alger', 'contact@eldjazairhotel.com', 'Hôtel', '../../assets/partenaire/eldjazair_logo.jpg'),
+        ('Clinique Chifa', 'Clinique privée spécialisée en cardiologie', 'Oran', 'contact@cliniquechifa.com', 'Clinique', '../../assets/partenaire/chifa_logo.jpg'),
+        ('École Lumière', 'École primaire et secondaire de renom', 'Constantine', 'contact@ecolelumiere.com', 'École', '../../assets/partenaire/lumiere_logo.jpg'),
+        ('Agence Voyage Horizons', 'Spécialiste des voyages organisés', 'Tizi Ouzou', 'contact@voyagehorizons.com', 'Agence de Voyage', '../../assets/partenaire/horizons_logo.jpg'),
+        ('Hôtel Safir', 'Hôtel économique avec des services de qualité', 'Annaba', 'contact@safirhotel.com', 'Hôtel', '../../assets/partenaire/safir_logo.jpg'),
+        ('Clinique Nour', 'Clinique esthétique et dermatologique', 'Alger', 'contact@cliniquenour.com', 'Clinique', '../../assets/partenaire/nour_logo.jpg'), 
+        ('École Internationale Ibn Khaldoun', 'École internationale avec programme bilingue', 'Setif', 'contact@ibnkhaldounschool.com', 'École', '../../assets/partenaire/ibnkhaldoun_logo.jpg'),
+        ('Agence Voyage Sahara', 'Excursions et circuits dans le sud algérien', 'Ouargla', 'contact@voyagesahara.com', 'Agence de Voyage', '../../assets/partenaire/sahara_logo.jpg'),
+        ('Hôtel Tassili', 'Hôtel traditionnel avec vue panoramique', 'Béjaïa', 'contact@tassilihotel.com', 'Hôtel', '../../assets/partenaire/tassili_logo.jpg'),
+        ('Clinique Espoir', 'Clinique spécialisée en soins orthopédiques', 'Batna', 'contact@cliniqueespoir.com', 'Clinique', '../../assets/partenaire/espoir_logo.jpg'),
+        ('École Élite', 'École privée avec activités parascolaires enrichies', 'Oran', 'contact@ecoleelite.com', 'École', '../../assets/partenaire/elite_logo.jpg'),
+        ('Agence Voyage Évasion', 'Voyages personnalisés pour les particuliers et entreprises', 'Alger', 'contact@voyageevasion.com', 'Agence de Voyage', '../../assets/partenaire/evasion_logo.jpg');",
 
         // Données pour la table Offre
         "INSERT INTO Offre (idPartenaire, idTypeCarte, nom, wilaya, pourcentage) VALUES
@@ -275,49 +275,49 @@ try {
         ('Collecte de Fonds pour les Orphelins', 
         'Un événement caritatif visant à collecter des fonds pour soutenir les orphelins en Algérie.',
         'Participez à cette collecte pour faire une différence dans la vie des enfants défavorisés.', 
-        'assets/general/event1.png',
+        '../../assets/general/event1.png',
         '2024-12-30', '10:00:00'),
 
         ('Distribution de Repas Chauds', 
         'Une action de bénévolat pour distribuer des repas chauds aux sans-abris.',
         'Rejoignez notre équipe pour offrir un moment de réconfort aux personnes dans le besoin.', 
-        'assets/general/event2.png',
+        '../../assets/general/event2.png',
         '2024-12-25', '12:00:00'),
 
         ('Journée de Nettoyage de Quartier', 
         'Une initiative locale pour nettoyer et embellir notre quartier.',
         'Mobilisons-nous pour rendre notre environnement plus propre et accueillant.', 
-        'assets/general/event3.png',
+        '../../assets/general/event3.png',
         '2024-12-28', '09:00:00'),
 
         ('Atelier d\'Aide Scolaire', 
         'Un atelier destiné à aider les enfants en difficulté scolaire.',
         'Apportez votre soutien pour encadrer des sessions éducatives et encourager la réussite.', 
-        'assets/general/event4.png',
+        '../../assets/general/event4.png',
         '2025-01-10', '14:00:00'),
 
         ('Campagne de Don de Vêtements', 
         'Une campagne pour collecter et distribuer des vêtements aux familles démunies.',
         'Vos contributions peuvent aider à garder les enfants et adultes au chaud cet hiver.', 
-        'assets/general/event5.png',
+        '../../assets/general/event5.png',
         '2025-01-15', '16:30:00'),
 
         ('Forum des Associations', 
         'Un forum réunissant plusieurs associations caritatives pour échanger et collaborer.',
         'Découvrez les initiatives en cours et comment vous pouvez contribuer.', 
-        'assets/general/event6.png',
+        '../../assets/general/event6.png',
         '2025-02-05', '10:00:00'),
 
         ('Soirée de Sensibilisation sur la Pauvreté', 
         'Une soirée dédiée à sensibiliser le public sur les défis liés à la pauvreté.',
         'Rejoignez-nous pour des discussions et témoignages inspirants.', 
-        'assets/general/event7.png',
+        '../../assets/general/event7.png',
         '2025-02-10', '18:00:00'),
 
         ('Marche Solidaire pour la Santé', 
         'Une marche organisée pour sensibiliser à l\'importance de l\'accès aux soins de santé.',
         'Faites partie de cet événement pour soutenir les communautés marginalisées.', 
-        'assets/general/event8.png',
+        '../../assets/general/event8.png',
         '2025-03-01', '08:00:00');",
 
         //Données pour la table Benevolat
@@ -375,17 +375,17 @@ try {
 
         //Données pour la table Diaporama
         "INSERT INTO Diaporama (nom, lien) VALUES
-        ('pic1', 'assets/diaporama/pic1.jpg'),
-        ('pic2', 'assets/diaporama/pic2.jpg'),
-        ('pic3', 'assets/diaporama/pic3.jpg'),
-        ('pic4', 'assets/diaporama/pic4.jpg'),
-        ('pic5', 'assets/diaporama/pic5.jpg');",
+        ('pic1', '../../assets/diaporama/pic1.jpg'),
+        ('pic2', '../../assets/diaporama/pic2.jpg'),
+        ('pic3', '../../assets/diaporama/pic3.jpg'),
+        ('pic4', '../../assets/diaporama/pic4.jpg'),
+        ('pic5', '../../assets/diaporama/pic5.jpg');",
 
         //Données pour la table SocialMediaLinks
         "INSERT INTO SocialMediaLinks (nom, logo, lien) VALUES
-        ('facebook', 'assets/socialMedia/facebook.png', 'https://www.facebook.com/'),
-        ('instagram', 'assets/socialMedia/instagram.png', 'https://www.instagram.com/'),
-        ('linkedin', 'assets/socialMedia/linkedin.png', 'https://www.linkedin.com/');",
+        ('facebook', '../../assets/socialMedia/facebook.png', 'https://www.facebook.com/'),
+        ('instagram', '../../assets/socialMedia/instagram.png', 'https://www.instagram.com/'),
+        ('linkedin', '../../assets/socialMedia/linkedin.png', 'https://www.linkedin.com/');",
     ];
 
     foreach ($data as $query) {

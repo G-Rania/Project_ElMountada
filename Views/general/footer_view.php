@@ -1,5 +1,5 @@
 <?php
-require_once('Controllers/general/footer_controller.php');
+require_once('../../Controllers/general/footer_controller.php');
 
 class footer_view {
     public function head_description() {
@@ -7,8 +7,8 @@ class footer_view {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="output.css" rel="stylesheet" />
-            <script src="jquery-3.7.1.min.js"></script>
+            <link href="../../output.css" rel="stylesheet" />
+            <script src="../../jquery-3.7.1.min.js"></script>
         </head>
         <?php
     }
@@ -23,7 +23,7 @@ class footer_view {
                 <div class="flex self-start text-xl text-center text-teal-800">
                 <img
                     loading="lazy"
-                    src="assets/general/logoFooter.png"
+                    src="../../assets/general/logoFooter.png"
                     class="object-contain shrink-0 w-32 max-w-full aspect-[1.27]"
                     alt="El Mountada Logo"
                 />
@@ -42,7 +42,7 @@ class footer_view {
                         echo '<a href = "'.$link.'">
                         <img
                         loading="lazy"
-                        src="assets/socialMedia/facebook.png"
+                        src="../../assets/socialMedia/facebook.png"
                         class="object-contain mt-7 max-w-full aspect-[4.33] w-[104px]"
                         alt="facebook icon"
                         />
@@ -51,7 +51,7 @@ class footer_view {
                         echo '<a href = "'.$link.'">
                         <img
                         loading="lazy"
-                        src="assets/socialMedia/instagram.png"
+                        src="../../assets/socialMedia/instagram.png"
                         class="object-contain mt-7 max-w-full aspect-[4.33] w-[104px]"
                         alt="instagram icon"
                         />
@@ -60,7 +60,7 @@ class footer_view {
                         echo '<a href = "'.$link.'">
                         <img
                         loading="lazy"
-                        src="assets/socialMedia/linkedin.png"
+                        src="../../assets/socialMedia/linkedin.png"
                         class="object-contain mt-7 max-w-full aspect-[4.33] w-[104px]"
                         alt="linkedin icon"
                         />

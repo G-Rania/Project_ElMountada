@@ -1,6 +1,6 @@
 <?php
-require_once('Models/general/header_model.php');
-require_once('Views/general/header_view.php');
+require_once('../../Models/general/header_model.php');
+require_once('../../Views/general/header_view.php');
 
 class header_controller{
    
