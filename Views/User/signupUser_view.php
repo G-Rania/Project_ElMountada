@@ -44,6 +44,42 @@ class signupUser_view {
                     }
                 ?>
                 <form class="mt-4 space-y-4" id="signupUser" action="./signupUser.php" method="post">
+                    <!--nom + prenom-->
+                    <div class="flex flex-row gap-4">
+                        <!-- nom -->
+                        <div>
+                        <label for="nom" class="block text-sm text-gray-600">Nom</label>
+                        <input 
+                            type="text" 
+                            id="nom" 
+                            name="nom" 
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                            required
+                        />
+                        </div>
+                        <!-- prénom -->
+                        <div>
+                        <label for="prenom" class="block text-sm text-gray-600">Prénom</label>
+                        <input 
+                            type="text" 
+                            id="prenom" 
+                            name="prenom" 
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                            required
+                        />
+                        </div>
+                    </div>
+                    <!-- Phone number -->
+                    <div>
+                        <label for="password" class="block text-sm text-gray-600">Numéro de téléphone</label>
+                        <input 
+                            type="tel" 
+                            id="num_tlp" 
+                            name="num_tlp" 
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                            required
+                        />
+                    </div>
                     <!-- Username -->
                     <div>
                         <label for="username" class="block text-sm text-gray-600">Nom d'utilisateur</label>

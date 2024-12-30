@@ -11,9 +11,9 @@ class connexionUser_controller{
         $model->signin_model("user",$username,$password,"./signinUser.php","./homePageUser.php");
     }
 
-    public function signupUser_controller($username, $email, $password){
-        $model = new signupUser_model($username, $email, $password);
-        $model->signupUser_model($username,$email,$password);
+    public function signupUser_controller($nom, $prenom, $num_tlp, $username, $email, $password){
+        $model = new signupUser_model($nom, $prenom, $num_tlp,$username, $email, $password);
+        $model->signupUser_model($nom, $prenom, $num_tlp,$username,$email,$password);
     }
 
 

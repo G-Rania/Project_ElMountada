@@ -4,7 +4,7 @@ require_once("../../Controllers/User/connexionUser_controller.php");
 
 class signupUser_model{
    
-    public function signupUser_model($username, $email, $password) {
+    public function signupUser_model($nom, $prenom, $num_tlp, $username, $email, $password) {
         session_start();
         $conn = new database_connection();
         $this_conn = $conn->connect_db();
@@ -23,8 +23,11 @@ class signupUser_model{
 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO user (username, email, password) VALUES (:username, :email, :password)";
+        $sql = "INSERT INTO user (nom, prenom, num_tlp ,username, email, password) VALUES (:nom, :prenom, :num_tlp, :username, :email, :password)";
         $request = $this_conn->prepare($sql);
+        $request->bindParam(':nom', $nom, PDO::PARAM_STR);
+        $request->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+        $request->bindParam(':num_tlp', $num_tlp, PDO::PARAM_STR);
         $request->bindParam(':username', $username, PDO::PARAM_STR);
         $request->bindParam(':email', $email, PDO::PARAM_STR);
         $request->bindParam(':password', $hashedPassword, PDO::PARAM_STR);

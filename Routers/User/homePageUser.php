@@ -1,5 +1,10 @@
 <?php
  require_once('../../Controllers/User/homePageUser_controller.php');
 
- $instance = new homePageUser_controller();
- $instance->display_homePageUser_controller();
+ session_start();
+ if (isset($_SESSION['username']) && isset($_SESSION['ID']) ){
+     $instance = new homePageUser_controller();
+     $instance->display_homePageUser_controller();
+ }else{
+    header("Location: ./signinUser.php");
+ }

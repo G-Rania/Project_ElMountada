@@ -14,12 +14,36 @@ class homePageUser_view {
         <?php
     }
 
+    public function header_homePageUser_view() {
+    ?>
+    <div class="flex justify-between items-center">
+        <?php
+            //display header
+            $header = new header_view();
+            $header->header();
+        ?>
+        <div class="flex flex-row gap-6 mr-7">
+            <button id="subscriptionBtn" class="text-lg text-white bg-[#339989] hover:bg-[#226e63] px-3 py-1 rounded-full focus:outline-none">
+                <span>Acheter une carte</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Redirection to subscription page -->
+    <script>
+        document.getElementById('subscriptionBtn').addEventListener('click', function() {
+            window.location.href = '../User/subscriptionUser.php'; 
+        });
+    </script>
+
+    <?php
+}
+
      public function display_homePageUser_view() {
         $instance = new homePageUser_view();
-        $header = new header_view();
         $footer = new footer_view();
         $instance->head_description();
-        $header->header();
+        $instance->header_homePageUser_view();
         $footer->footer();
     }
 }
