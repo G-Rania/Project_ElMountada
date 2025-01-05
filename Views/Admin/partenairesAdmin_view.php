@@ -19,7 +19,7 @@ class partenairesAdmin_view {
     <div class="px-4 py-10 max-w-screen-xl mx-auto">
         <h2 class=" text-left text-2xl font-semibold text-zinc-800 mb-6">Partenaires</h2>
         <div class="overflow-x-auto">
-            <table id="offersTable" class="w-full bg-offWhite border-separate border-spacing-0 rounded-lg">
+            <table id="offersTable" class="w-full bg-offWhite border-separate border-spacing-0 rounded-3xl">
                 <thead class="text-left text-zinc-800 bg-offWhite rounded-t-lg">
                     <tr>
                         <th class="px-4 py-2 border-b border-white">Partenaire</th>
@@ -56,10 +56,10 @@ class partenairesAdmin_view {
 
         <!-- Pagination -->
         <div class="flex justify-center mt-6 space-x-2">
-            <button id="prevPage" class="px-4 py-2 mx-1 text-sm font-medium text-white bg-[#7DE2D1] rounded-lg hover:bg-[#339989]" disabled>
+            <button id="prevPage" class="px-4 py-2 mx-1 text-sm font-medium text-white bg-[#339989] rounded-lg hover:bg-[#226e63]" disabled>
                 Précédent
             </button>
-            <button id="nextPage" class="px-4 py-2 mx-1 text-sm font-medium text-white bg-[#7DE2D1] rounded-lg hover:bg-[#339989]">
+            <button id="nextPage" class="px-4 py-2 mx-1 text-sm font-medium text-white bg-[#339989] rounded-lg hover:bg-[#226e63]">
                 Suivant
             </button>
         </div>

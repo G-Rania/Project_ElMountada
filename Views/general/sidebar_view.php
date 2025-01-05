@@ -31,16 +31,16 @@ class sidebar_view {
 
             <!-- Navigation Links -->
             <nav class="flex flex-col space-y-4 px-6 mt-4 overflow-y-auto">
-                <a href="#offers" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
+                <a href="../Admin/partenairesAdmin.php" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
                     Partenaires
                 </a>
-                <a href="#offers" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
+                <a href="" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
                     Offres
                 </a>
                 <a href="#special-offers" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
                     Offres spéciales
                 </a>
-                <a href="#membership" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
+                <a href="../Admin/cardRequests.php" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
                     Demandes d'adhésion
                 </a>
                 <a href="#help" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
