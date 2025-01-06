@@ -14,6 +14,7 @@ $passwords = [
     'admin1',        //Benhaminda Khaled
     'admin2',       //Boukhalfa Amira
     'admin3',       //Achour Yacine
+    'admin',
     'gestionnaire1', //Dahmane Karim
     'gestionnaire2', //Brahimi Salima
     'gestionnaire3',  //Toumi Samir
@@ -63,28 +64,29 @@ try {
         "INSERT INTO Admin (username, password, nom, prenom, num_tlp, email, photo) VALUES
         ('khaled_ben',  '{$hashedPasswords[10]}', 'Benhamida', 'Khaled', '0555123456', 'khaled_ben@example.com', 'khaled_ben.jpg'),
         ('amira_bou', '{$hashedPasswords[11]}', 'Boukhalfa', 'Amira', '0556789012', 'amira_bou@example.com', 'amira_bou.jpg'),
-        ('yacine_ach', '{$hashedPasswords[12]}', 'Achour', 'Yacine', '0559876543', 'yacine_ach@example.com', 'yacine_ach.jpg');",
+        ('yacine_ach', '{$hashedPasswords[12]}', 'Achour', 'Yacine', '0559876543', 'yacine_ach@example.com', 'yacine_ach.jpg'),
+        ('admin', '{$hashedPasswords[13]}', 'test_admin', 'test_admin', '0559276543', 'test_admin@example.com', 'admin.jpg');",
 
         //Données pour la table gestionnaire
         "INSERT INTO Gestionnaire (username, password, nom, prenom, num_tlp, email, photo) VALUES
-        ('karim_dah', '{$hashedPasswords[13]}', 'Dahmane', 'Karim', '0551234567', 'karim_dah@example.com', 'karim_dah.jpg'),
-        ('salima_bra', '{$hashedPasswords[14]}', 'Brahimi', 'Salima', '0552345678', 'salima_bra@example.com', 'salima_bra.jpg'),
-        ('samir_tou', '{$hashedPasswords[15]}', 'Toumi', 'Samir', '0553456789', 'samir_tou@example.com', 'samir_tou.jpg');",
+        ('karim_dah', '{$hashedPasswords[14]}', 'Dahmane', 'Karim', '0551234567', 'karim_dah@example.com', 'karim_dah.jpg'),
+        ('salima_bra', '{$hashedPasswords[15]}', 'Brahimi', 'Salima', '0552345678', 'salima_bra@example.com', 'salima_bra.jpg'),
+        ('samir_tou', '{$hashedPasswords[16]}', 'Toumi', 'Samir', '0553456789', 'samir_tou@example.com', 'samir_tou.jpg');",
 
         //Données pour la table ComptePartenaire
         "INSERT INTO ComptePartenaire (idPartenaire, username, password, idCarte) VALUES
-        (1, 'hoteleldjazair_admin', '{$hashedPasswords[16]}', 4),
-        (2, 'cliniquechifa_admin', '{$hashedPasswords[17]}', 5),
-        (3, 'ecolelumiere_admin', '{$hashedPasswords[18]}', 6),
-        (4, 'voyagehorizons_admin', '{$hashedPasswords[19]}', 7),
-        (5, 'hotelsafir_admin', '{$hashedPasswords[20]}', 8),
-        (6, 'clinique_nour_admin', '{$hashedPasswords[21]}', 9),
-        (7, 'ecoleibnkhaldoun_admin', '{$hashedPasswords[22]}', 10),
-        (8, 'voyagesahara_admin', '{$hashedPasswords[23]}', 11),
-        (9, 'hoteltassili_admin', '{$hashedPasswords[24]}', 12),
-        (10, 'cliniqueespoir_admin', '{$hashedPasswords[25]}', 13),
-        (11, 'ecoleelite_admin', '{$hashedPasswords[26]}', 14),
-        (12, 'voyageevasion_admin', '{$hashedPasswords[27]}', 15);",
+        (1, 'hoteleldjazair_admin', '{$hashedPasswords[17]}', 4),
+        (2, 'cliniquechifa_admin', '{$hashedPasswords[18]}', 5),
+        (3, 'ecolelumiere_admin', '{$hashedPasswords[19]}', 6),
+        (4, 'voyagehorizons_admin', '{$hashedPasswords[20]}', 7),
+        (5, 'hotelsafir_admin', '{$hashedPasswords[21]}', 8),
+        (6, 'clinique_nour_admin', '{$hashedPasswords[22]}', 9),
+        (7, 'ecoleibnkhaldoun_admin', '{$hashedPasswords[23]}', 10),
+        (8, 'voyagesahara_admin', '{$hashedPasswords[24]}', 11),
+        (9, 'hoteltassili_admin', '{$hashedPasswords[25]}', 12),
+        (10, 'cliniqueespoir_admin', '{$hashedPasswords[26]}', 13),
+        (11, 'ecoleelite_admin', '{$hashedPasswords[27]}', 14),
+        (12, 'voyageevasion_admin', '{$hashedPasswords[28]}', 15);",
 
         // Données pour la table TypeCarte
         "INSERT INTO TypeCarte (nom, description, prix) VALUES
@@ -216,19 +218,7 @@ try {
         "INSERT INTO Carte (idUser, idTypeCarte, date_exp, recu_paiement) VALUES
         (1, 1, '2025-12-22', 'recu1.pdf'),
         (4, 1, '2025-12-22', 'recu4.pdf'),
-        (9, 2, '2025-12-22', 'recu9.pdf'),
-        (NULL,4,NULL,NULL),
-        (NULL,4,NULL,NULL),
-        (NULL,4,NULL,NULL),
-        (NULL,4,NULL,NULL),
-        (NULL,4,NULL,NULL),
-        (NULL,4,NULL,NULL),
-        (NULL,4,NULL,NULL),
-        (NULL,4,NULL,NULL),
-        (NULL,4,NULL,NULL),
-        (NULL,4,NULL,NULL),
-        (NULL,4,NULL,NULL),
-        (NULL,4,NULL,NULL);",
+        (9, 2, '2025-12-22', 'recu9.pdf');",
 
         //Données de la table OffreCarte
         "INSERT INTO OffreCarte (idCarte, idOffre, date) VALUES

@@ -33,9 +33,12 @@ class signupUser_model{
         $request->bindParam(':password', $hashedPassword, PDO::PARAM_STR);
 
         $request->execute();
+        $idUser = $this_conn->lastInsertId();
         $conn->disconnect_db($this_conn);
 
         if ($request->rowCount() > 0) {
+            $_SESSION['username'] = $username;
+            $_SESSION['ID'] = $idUser;
             header("Location: ./homePageUser.php");
             return true; 
         } else {
