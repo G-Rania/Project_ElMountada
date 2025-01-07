@@ -33,7 +33,15 @@ class signupUser_model{
         $request->bindParam(':password', $hashedPassword, PDO::PARAM_STR);
 
         $request->execute();
-        $idUser = $this_conn->lastInsertId();
+
+        $sql = "SELECT * FROM user WHERE username = :username";
+        $request = $this_conn->prepare($sql);
+        $request->bindParam(":username", $username, PDO::PARAM_STR);
+        $request->execute();
+
+        $result = $request->fetch(PDO::FETCH_ASSOC);
+        $idUser = $result['ID'];
+
         $conn->disconnect_db($this_conn);
 
         if ($request->rowCount() > 0) {

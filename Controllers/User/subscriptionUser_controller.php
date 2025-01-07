@@ -10,28 +10,32 @@ class subscriptionUser_controller{
         return $types;
     }
 
-    public function send_cardRequest_controller($typeCarte,$photo,$piece_identite,$recu_paiement) {
+    public function send_cardRequest_controller($idUser,$typeCarte,$photo,$piece_identite,$recu_paiement) {
 
         $photoPath = $this->uploadFile($photo);
         $piece_identitePath = $this->uploadFile($piece_identite);
         $recu_paiementPath = $this->uploadFile($recu_paiement);
 
         $model = new subscriptionUser_model();
-        $model->send_cardRequest_model($typeCarte, $photoPath, $piece_identitePath, $recu_paiementPath);
+        $model->send_cardRequest_model($idUser, $typeCarte, $photoPath, $piece_identitePath, $recu_paiementPath);
     }
 
     public function uploadFile($file) {
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            throw new Exception("Erreur lors de l'upload du fichier : " . $file['error']);
+        }
+
         $targetDir = "../../assets/uploads/";
         $targetFile = $targetDir . basename($file["name"]);
-        
+
         if (!is_dir($targetDir)) {
             mkdir($targetDir, 0755, true);
         }
-        
+
         if (move_uploaded_file($file["tmp_name"], $targetFile)) {
             return $targetFile;
         } else {
-            throw new Exception("Erreur lors de l'upload du fichier : " . $file["error"]);
+            throw new Exception("Impossible de déplacer le fichier téléchargé.");
         }
     }
 

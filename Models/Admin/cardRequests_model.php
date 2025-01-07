@@ -43,7 +43,7 @@ class cardRequests_model{
         $request->bindParam(':cardRequest_id', $cardRequest_id, PDO::PARAM_INT);
         $request->execute();
 
-        $sql = "SELECT idUser, idTypeCarte FROM demandecarte WHERE ID = :cardRequest_id";
+        $sql = "SELECT idUser, idTypeCarte, photo FROM demandecarte WHERE ID = :cardRequest_id";
         $request = $this_conn->prepare(query: $sql);
         $request->bindParam(':cardRequest_id', $cardRequest_id, PDO::PARAM_INT);
         $request->execute();
@@ -55,11 +55,41 @@ class cardRequests_model{
 
         $idUser = $result["idUser"];
         $idTypeCarte = $result["idTypeCarte"];
-        $sql = "INSERT INTO carte (idUser, idTypeCarte, date_exp) VALUES (:idUser, :idTypeCarte, DATE_ADD(NOW(), INTERVAL 1 YEAR))";
+        $photo = $result["photo"];
+
+        $sql = "SELECT * FROM carte WHERE idUser = :idUser";
         $request = $this_conn->prepare($sql);
         $request->bindParam(':idUser', $idUser, PDO::PARAM_INT);
-        $request->bindParam(':idTypeCarte', $idTypeCarte, PDO::PARAM_INT);
         $request->execute();
+        $result = $request->fetch(PDO::FETCH_ASSOC);
+
+        if ($result){ 
+            // the user has already a card => upgrade card
+            $sql = "UPDATE carte SET 
+            idTypeCarte = :idTypeCarte,
+            photo = :photo,
+            date_exp = DATE_ADD(NOW(), INTERVAL 1 YEAR)
+            WHERE ID = :idCarte";
+            $request = $this_conn->prepare($sql);
+            $request->bindParam(':idTypeCarte', $idTypeCarte, PDO::PARAM_INT);
+            $request->bindParam(':photo', $photo, PDO::PARAM_STR);
+            $request->bindParam(':idCarte', $result["ID"], PDO::PARAM_INT);
+            $request->execute();
+        } else{
+            // the user is buying a card for the first time => is member
+            $sql = "INSERT INTO carte (idUser, idTypeCarte, photo, date_exp) VALUES (:idUser, :idTypeCarte, :photo, DATE_ADD(NOW(), INTERVAL 1 YEAR))";
+            $request = $this_conn->prepare($sql);
+            $request->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+            $request->bindParam(':idTypeCarte', $idTypeCarte, PDO::PARAM_INT);
+            $request->bindParam(':photo', $photo, PDO::PARAM_STR);
+            $request->execute();
+
+            $sql = "UPDATE user SET isMember = 1 WHERE ID = :idUser";
+            $request = $this_conn->prepare(query: $sql);
+            $request->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+            $request->execute();
+        }   
+
         $conn->disconnect_db($this_conn);
     }
 
@@ -73,7 +103,6 @@ class cardRequests_model{
         $request->execute();
         $conn->disconnect_db($this_conn);
     }
-
 
 }
 ?>

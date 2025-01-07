@@ -104,7 +104,6 @@ public function subscriptionUser() {
 }
 
 
-
     public function display_subscriptionPage_view(){
         $instance = new subscriptionUser_view();
         $header = new header_view();

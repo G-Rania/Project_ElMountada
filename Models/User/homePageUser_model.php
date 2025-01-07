@@ -5,6 +5,34 @@ require_once('../../ConnectionDB/database_connection.php');
 class homePageUser_model{
 
 
+    public function get_cardUser_model($idUser){
+        $conn = new database_connection();
+        $this_conn = $conn->connect_db();
+        $sql = "SELECT 
+            user.nom, 
+            user.prenom, 
+            carte.photo, 
+            typecarte.nom AS type_carte_nom,
+            carte.date_exp 
+        FROM user
+        JOIN carte ON user.ID = carte.idUser
+        JOIN typecarte ON typecarte.ID = carte.idTypeCarte
+        WHERE carte.idUser = :idUser";
+        
+        $request = $this_conn->prepare(query: $sql);
+        $request->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        $request->execute(); 
+        $result = $request->fetch(PDO::FETCH_ASSOC);
+        if ($result and strtotime(datetime: date(format: 'Y-m-d H:i:s'))< strtotime($result["date_exp"])){
+            return $result;
+        }
+        else if ($result){
+            return 1;
+        }else {
+            return 0;
+        }
+    }
+
     public function get_specialOffersUser_model($idUser){
         $conn = new database_connection();
         $this_conn = $conn->connect_db();

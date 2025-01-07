@@ -4,13 +4,26 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try{
-        $controller = new subscriptionUser_controller();
-        $controller->send_cardRequest_controller($_POST['typeCarte'],$_FILES['photo'],$_FILES['piece_identite'],$_FILES['recu_paiement']);
-    }catch (PDOException $ex) {
+    try {
+        if (
+            isset($_POST['typeCarte']) &&
+            isset($_FILES['photo']) && isset($_FILES['piece_identite']) && isset($_FILES['recu_paiement'])
+        ) {
+            $controller = new subscriptionUser_controller();
+            $controller->send_cardRequest_controller(
+                $_SESSION['ID'],
+                $_POST['typeCarte'],
+                $_FILES['photo'],
+                $_FILES['piece_identite'],
+                $_FILES['recu_paiement']
+            );
+        } else {
+            throw new Exception("Formulaire incomplet ou non envoyé correctement.");
+        }
+    } catch (Exception $ex) {
         echo "<p>Erreur : " . $ex->getMessage() . "</p>";
     }
-} else {
+}else {
     $controller = new subscriptionUser_controller();
     $controller->display_subscriptionPage_controller();
 }

@@ -16,24 +16,36 @@ class homePageUser_view {
         <?php
     }
 
-    public function header_homePageUser_view() {
-    ?>
-    <div class="flex justify-between items-center">
-        <?php
-            //display header
-            $header = new header_view();
-            $header->header();
-        ?>
-        <div class="flex flex-row gap-6 mr-7">
-            <button id="subscriptionBtn" class="text-base text-[#339989] border-[#339989] border-2 hover:bg-[#339989] hover:text-white px-3 py-1 rounded-full focus:outline-none">
-                <span>Acheter une carte</span>
-            </button>
-            <button id="displayCardBtn" class="text-base text-white bg-[#339989] hover:bg-[#226e63] px-3 py-1 rounded-full focus:outline-none">
-                <span>Ma carte</span>
-            </button>
-        </div>
-    </div>
+    public function header_homePageUser_view($idUser) {
+    try {
+        echo '<div class="flex justify-between items-center">';
+        $header = new header_view();
+        $header->header();
+        $controller = new homePageUser_controller();
+        $card = $controller->get_cardUser_controller($idUser);
 
+        if ($card == 0) {
+            echo '<div class="flex flex-row gap-6 mr-7">
+                <button id="subscriptionBtn" class="text-base text-[#339989] border-[#339989] border-2 hover:bg-[#339989] hover:text-white px-3 py-1 rounded-full focus:outline-none">
+                <span>Acheter une carte</span>
+                </button>
+                </div>';
+        } else{
+            echo '<div class="flex flex-row gap-6 mr-7">
+                <button id="subscriptionBtn" class="text-base text-[#339989] border-[#339989] border-2 hover:bg-[#339989] hover:text-white px-3 py-1 rounded-full focus:outline-none">
+                <span>Mettre à jour la carte</span>
+                </button>
+                <button id="displayCardBtn" class="text-base text-white bg-[#339989] hover:bg-[#226e63] px-3 py-1 rounded-full focus:outline-none">
+                    <span>Ma carte</span>
+                </button>
+                </div>';
+        }
+        echo '</div>';
+    } catch (PDOException $ex) {
+        echo "<p class='text-red-500'>Erreur : " . $ex->getMessage() . "</p>";
+        return; 
+    }    
+    ?>
     <!-- Redirection to subscription page -->
     <script>
         document.getElementById('subscriptionBtn').addEventListener('click', function() {
@@ -43,7 +55,6 @@ class homePageUser_view {
             window.location.href = '../User/cardUser.php'; 
         });
     </script>
-
     <?php
 }
 
@@ -96,7 +107,7 @@ class homePageUser_view {
       <div class="px-4 py-10 max-w-screen-xl mx-auto">
         <h2 class="text-left ml-5 text-xl font-semibold text-zinc-800 mb-6">Offres speciales</h2>
         <div class="overflow-x-auto">
-            <table id="offersTable" class="w-full bg-offWhite border-separate border-spacing-0 rounded-lg">
+            <table id="specialOffersTable" class="w-full bg-offWhite border-separate border-spacing-0 rounded-lg">
                 <thead class="text-left text-zinc-800 bg-offWhite rounded-t-lg">
                     <tr>
                         <th class="px-4 py-2 border-b border-white">Wilaya</th>
@@ -122,6 +133,45 @@ class homePageUser_view {
             </table>
         </div>
       </div>
+      <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const rows = document.querySelectorAll("#specialOffersTable tbody tr");
+                const rowsPerPage = 10;
+                let currentPage = 1;
+
+                const renderTable = () => {
+                    rows.forEach((row, index) => {
+                        row.classList.add("hidden");
+                        if (
+                            index >= (currentPage - 1) * rowsPerPage &&
+                            index < currentPage * rowsPerPage
+                        ) {
+                            row.classList.remove("hidden");
+                        }
+                    });
+
+                    // Gérer l'état des boutons
+                    document.getElementById("prevPage").disabled = currentPage === 1;
+                    document.getElementById("nextPage").disabled = currentPage * rowsPerPage >= rows.length;
+                };
+
+                document.getElementById("prevPage").addEventListener("click", () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        renderTable();
+                    }
+                });
+
+                document.getElementById("nextPage").addEventListener("click", () => {
+                    if (currentPage * rowsPerPage < rows.length) {
+                        currentPage++;
+                        renderTable();
+                    }
+                });
+
+                renderTable(); // Initialisation
+            });
+        </script>
     <?php
 }
     public function offersUser($idUser) {
@@ -225,7 +275,7 @@ class homePageUser_view {
         $footer = new footer_view();
         $landingPageElement = new landingPage_view();
         $instance->head_description();
-        $instance->header_homePageUser_view();
+        $instance->header_homePageUser_view($idUser);
         $instance->heroSection();
         $instance->specialOffersUser($idUser);
         $instance->offersUser($idUser);

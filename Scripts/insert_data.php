@@ -215,10 +215,10 @@ try {
         (10, 2, 'photo10.jpg', 'id10.jpg', 'recu10.pdf', 'pending');",
 
         //Données pour la table Carte
-        "INSERT INTO Carte (idUser, idTypeCarte, date_exp, recu_paiement) VALUES
-        (1, 1, '2025-12-22', 'recu1.pdf'),
-        (4, 1, '2025-12-22', 'recu4.pdf'),
-        (9, 2, '2025-12-22', 'recu9.pdf');",
+        "INSERT INTO Carte (idUser, idTypeCarte, date_exp, photo) VALUES
+        (1, 1, '2025-12-22', 'photo1.png'),
+        (4, 1, '2025-12-22', 'photo4.png'),
+        (9, 2, '2025-12-22', 'photo9.png');",
 
         //Données de la table OffreCarte
         "INSERT INTO OffreCarte (idCarte, idOffre, date) VALUES

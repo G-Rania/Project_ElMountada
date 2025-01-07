@@ -32,7 +32,7 @@ try {
             idTypeCarte INT NOT NULL,
             date_inscr TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             date_exp TIMESTAMP,
-            recu_paiement VARCHAR(255),
+            photo VARCHAR(255),
             FOREIGN KEY (idUser) REFERENCES User(ID),
             FOREIGN KEY (idTypeCarte) REFERENCES TypeCarte(ID)
         );",

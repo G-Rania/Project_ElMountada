@@ -15,16 +15,13 @@ class subscriptionUser_model{
         return $result;
     }
 
-    public function send_cardRequest_model($typeCarte, $photo, $piece_identite, $recu_paiement) {
+    public function send_cardRequest_model($idUser, $typeCarte, $photo, $piece_identite, $recu_paiement) {
         session_start();
         $conn = new database_connection();
         $this_conn = $conn->connect_db();
 
         $sql = "INSERT INTO demandecarte (idUser, idTypeCarte, photo, piece_identite, recu_paiement)  VALUES (:idUser, :idTypeCarte, :photo, :piece_identite, :recu_paiement)";
         $request = $this_conn->prepare(query: $sql);
-          
-        $idUser = $_SESSION['ID'];
-
         $request->bindParam(':idUser', $idUser, PDO::PARAM_INT);
         $request->bindParam(':idTypeCarte', $typeCarte, PDO::PARAM_INT);
         $request->bindParam(':photo', $photo, PDO::PARAM_STR);

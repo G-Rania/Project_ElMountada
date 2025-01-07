@@ -4,6 +4,12 @@ require_once('../../Models/User/homePageUser_model.php');
 
 class homePageUser_controller{
 
+    public function get_cardUser_controller($idUser){
+        $model = new homePageUser_model();
+        $special_offers = $model->get_cardUser_model($idUser);
+        return $special_offers;
+    }
+    
      public function get_specialOffersUser_controller($idUser){
         $model = new homePageUser_model();
         $special_offers = $model->get_specialOffersUser_model($idUser);
