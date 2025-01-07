@@ -30,29 +30,72 @@ class homePageUser_view {
                 <span>Acheter une carte</span>
                 </button>
                 </div>';
-        } else{
+        } else {
+            // Remplissage des données de la carte
             echo '<div class="flex flex-row gap-6 mr-7">
                 <button id="subscriptionBtn" class="text-base text-[#339989] border-[#339989] border-2 hover:bg-[#339989] hover:text-white px-3 py-1 rounded-full focus:outline-none">
                 <span>Mettre à jour la carte</span>
                 </button>
-                <button id="displayCardBtn" class="text-base text-white bg-[#339989] hover:bg-[#226e63] px-3 py-1 rounded-full focus:outline-none">
+                <button id="displayCardBtn" data-card-info=\'' . json_encode($card) . '\' class="text-base text-white bg-[#339989] hover:bg-[#226e63] px-3 py-1 rounded-full focus:outline-none">
                     <span>Ma carte</span>
                 </button>
                 </div>';
         }
         echo '</div>';
+
+        // Boîte de dialogue (modal)
+        echo '
+        <div id="cardModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-96">
+                <h2 class="text-xl font-semibold text-[#339989] mb-4">Ma Carte</h2>
+                <div id="cardDetails" class="text-gray-700">
+                    <div class="flex justify-center mb-4">
+                        <img id="cardPhoto" src="" alt="Photo de la carte" class="w-32 h-32 rounded-full shadow-md">
+                    </div>
+                    <p><strong>ID Carte :</strong> <span id="cardId"></span></p>
+                    <p><strong>Nom :</strong> <span id="nom"></span></p>
+                    <p><strong>Prénom :</strong> <span id="prenom"></span></p>
+                    <p><strong>Type de carte :</strong> <span id="cardType"></span></p>
+                    <p><strong>Date expiration :</strong> <span id="cardExpiry"></span></p>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <button id="closeModalBtn" class="text-white bg-[#339989] hover:bg-[#226e63] px-4 py-2 rounded-full">Fermer</button>
+                </div>
+            </div>
+        </div>
+        ';
+
     } catch (PDOException $ex) {
         echo "<p class='text-red-500'>Erreur : " . $ex->getMessage() . "</p>";
-        return; 
-    }    
+        return;
+    }
     ?>
-    <!-- Redirection to subscription page -->
+    <!-- Scripts -->
     <script>
-        document.getElementById('subscriptionBtn').addEventListener('click', function() {
-            window.location.href = '../User/subscriptionUser.php'; 
+        // Gestionnaire pour ouvrir la modal
+        document.getElementById('displayCardBtn').addEventListener('click', function () {
+            const cardInfo = JSON.parse(this.getAttribute('data-card-info'));
+            document.getElementById('cardId').textContent = cardInfo.ID;
+            document.getElementById('nom').textContent = cardInfo.nom;
+            document.getElementById('prenom').textContent = cardInfo.prenom;
+            document.getElementById('cardType').textContent = cardInfo.type_carte_nom;
+            document.getElementById('cardExpiry').textContent = cardInfo.date_exp;
+
+            const photoElement = document.getElementById('cardPhoto');
+            photoElement.src = cardInfo.photo;
+            photoElement.alt = `Photo de ${cardInfo.nom} ${cardInfo.prenom}`;
+
+            document.getElementById('cardModal').classList.remove('hidden');
         });
-         document.getElementById('displayCardBtn').addEventListener('click', function() {
-            window.location.href = '../User/cardUser.php'; 
+
+        // Gestionnaire pour fermer la modal
+        document.getElementById('closeModalBtn').addEventListener('click', function () {
+            document.getElementById('cardModal').classList.add('hidden');
+        });
+
+        // Redirection pour le bouton de mise à jour ou abonnement
+        document.getElementById('subscriptionBtn').addEventListener('click', function () {
+            window.location.href = '../User/subscriptionUser.php';
         });
     </script>
     <?php

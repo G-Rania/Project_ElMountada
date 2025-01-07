@@ -13,6 +13,7 @@ class homePageUser_model{
             user.prenom, 
             carte.photo, 
             typecarte.nom AS type_carte_nom,
+            carte.ID,
             carte.date_exp 
         FROM user
         JOIN carte ON user.ID = carte.idUser
