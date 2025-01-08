@@ -46,7 +46,7 @@ class sidebar_view {
                 <a href="#help" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
                     Demandes d'aide
                 </a>
-                <a href="#member-management" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
+                <a href="../Admin/users.php" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
                     Gestion des membres
                 </a>
                 <a href="#events" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
