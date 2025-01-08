@@ -4,7 +4,7 @@
  session_start();
  if (isset($_SESSION['username']) && isset($_SESSION['ID']) ){
      $instance = new homePageUser_controller();
-     $instance->display_homePageUser_controller(11);
+     $instance->display_homePageUser_controller( $_SESSION['ID']);
  }else{
     header("Location: ./signinUser.php");
  }
