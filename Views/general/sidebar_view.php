@@ -52,7 +52,7 @@ class sidebar_view {
                 <a href="#events" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
                     Évènements
                 </a>
-                <a href="#donations" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
+                <a href="../Admin/donnations.php" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">
                     Gestion des dons
                 </a>
                 <a href="#statistics" class="hover:bg-teal-700 hover:text-white rounded-lg px-3 py-2 transition-all duration-300">

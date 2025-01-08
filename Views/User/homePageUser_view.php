@@ -126,9 +126,34 @@ class homePageUser_view {
         </div>
     </div>
 
+    <!-- Modale pour suivi des dons -->
+        <div id="traceModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <p class="text-xl font-bold text-gray-900 mb-4">Compte CCP : <span class="font-semibold">2233455566</span></p>
+                <p class="text-lg font-medium text-gray-800 mb-4">Voulez vous garder trace de vos dons ?</p>
+                <div class="flex justify-end space-x-4">
+                    <button id="acceptBtn" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700">Accepter</button>
+                    <button id="refuseBtn" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">Refuser</button>
+                </div>
+            </div>
+        </div>
+
     <script>
-        document.getElementById('donateButton').addEventListener('click', function() {
-            window.location.href = '../User/donationPage.php'; // Remplacez par le lien correct
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ouvrir la modale
+            document.getElementById("donateButton").addEventListener("click", () => {
+               document.getElementById('traceModal').classList.remove('hidden');
+            });
+
+            // Fermer la modale
+            document.getElementById("refuseBtn").addEventListener("click", () => {
+                document.getElementById('traceModal').classList.add('hidden');
+            });
+
+            // Confirmer l'acceptation dans la modale
+            document.getElementById("acceptBtn").addEventListener("click", () => {
+                window.location.href = '../User/donnation.php';
+            });
         });
     </script>
     <?php

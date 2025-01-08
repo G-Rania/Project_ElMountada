@@ -126,7 +126,7 @@ class landingPage_view {
                 <p class="text-xl text-center">
                     Chaque don compte pour transformer des vies et bâtir un avenir meilleur. Contribuez aujourd'hui pour aider ceux qui en ont besoin. Votre générosité fait la différence !
                 </p>
-                <button class="flex gap-4 justify-center items-center px-4 py-2 text-lg text-white bg-[#339989] hover:bg-[#7DE2D1] rounded-full">
+                <button id="donnate" class="flex gap-4 justify-center items-center px-4 py-2 text-lg text-white bg-[#339989] hover:bg-[#7DE2D1] rounded-full">
                     <span>Faire un don</span>
                     <img
                         loading="lazy"
@@ -143,6 +143,31 @@ class landingPage_view {
                 class="object-contain shrink-0 w-[120px]"
             />
         </div>
+
+        <!-- Modale pour afficher compte ccp -->
+        <div id="donnationModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <p class="text-xl font-bold text-gray-900 mb-4">Compte CCP : <span class="font-semibold">2233455566</span></p>
+                <div class="flex justify-end space-x-4">
+                    <button id="closeBtn" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">Fermer</button>
+                </div>
+            </div>
+        </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ouvrir la modale
+            document.getElementById("donnate").addEventListener("click", () => {
+               document.getElementById('donnationModal').classList.remove('hidden');
+            });
+
+            // Fermer la modale
+            document.getElementById("closeBtn").addEventListener("click", () => {
+                document.getElementById('donnationModal').classList.add('hidden');
+            });
+
+        });
+    </script>
         <?php
     }
 

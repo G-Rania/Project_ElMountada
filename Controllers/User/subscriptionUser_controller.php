@@ -1,6 +1,7 @@
 <?php
 require_once('../../Views/User/subscriptionUser_view.php');
 require_once('../../Models/User/subscriptionUser_model.php');
+require_once('../../Controllers/general/uploadingFiles_controller.php');
 
 class subscriptionUser_controller{
 
@@ -12,33 +13,15 @@ class subscriptionUser_controller{
 
     public function send_cardRequest_controller($idUser,$typeCarte,$photo,$piece_identite,$recu_paiement) {
 
-        $photoPath = $this->uploadFile($photo);
-        $piece_identitePath = $this->uploadFile($piece_identite);
-        $recu_paiementPath = $this->uploadFile($recu_paiement);
+        $upload = new uploadingFiles_controller();
+
+        $photoPath = $upload->uploadFile($photo);
+        $piece_identitePath = $upload->uploadFile($piece_identite);
+        $recu_paiementPath = $upload->uploadFile($recu_paiement);
 
         $model = new subscriptionUser_model();
         $model->send_cardRequest_model($idUser, $typeCarte, $photoPath, $piece_identitePath, $recu_paiementPath);
     }
-
-    public function uploadFile($file) {
-        if ($file['error'] !== UPLOAD_ERR_OK) {
-            throw new Exception("Erreur lors de l'upload du fichier : " . $file['error']);
-        }
-
-        $targetDir = "../../assets/uploads/";
-        $targetFile = $targetDir . basename($file["name"]);
-
-        if (!is_dir($targetDir)) {
-            mkdir($targetDir, 0755, true);
-        }
-
-        if (move_uploaded_file($file["tmp_name"], $targetFile)) {
-            return $targetFile;
-        } else {
-            throw new Exception("Impossible de déplacer le fichier téléchargé.");
-        }
-    }
-
 
     public function display_subscriptionPage_controller(){
         $view = new subscriptionUser_view();
