@@ -80,7 +80,7 @@ public function donnation() {
         
                 <!-- Reçu de virement -->
                 <div>
-                    <label for="recu_virement" class="block text-sm font-medium text-gray-600 mb-2">Reçu de paiement</label>
+                    <label for="recu_virement" class="block text-sm font-medium text-gray-600 mb-2">Reçu de virement</label>
                     <input 
                         type="file" 
                         id="recu_virement" 
