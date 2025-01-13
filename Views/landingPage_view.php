@@ -171,7 +171,7 @@ class landingPage_view {
         <?php
     }
 
-   public function events() {
+  public function events() {
     ?>
     <div class="flex flex-col">
         <!-- Section Title -->
@@ -214,11 +214,11 @@ class landingPage_view {
                             </div>
                         </div>
                         <!-- Read More Link -->
-                        <a href="#" 
-                           class="self-end mt-4 text-sm text-emerald-500 hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-300" 
-                           aria-label="Lire la suite sur l'événement">
+                        <button
+                           data-event-info='<?php echo json_encode($event); ?>'
+                           class="readMoreBtn self-end mt-4 text-sm text-emerald-500 hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-300">
                             Lire la suite →
-                        </a>
+                        </button>
                     </div>
                     <?php
                 }
@@ -237,6 +237,121 @@ class landingPage_view {
         </a>
     </div>
 
+    <!-- Modal -->
+    <div id="eventModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white w-11/12 max-w-lg rounded-lg shadow-2xl p-6 relative flex">
+            <!-- Image -->
+            <img 
+                id="modalImg" 
+                class="w-1/3 h-32 object-cover rounded-lg shadow-md mr-4" 
+                alt="Image de l'événement"
+            />
+
+            <!-- Content -->
+            <div class="flex flex-col justify-between w-2/3">
+                <!-- Close Button -->
+                <button 
+                    id="closeModal" 
+                    class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+                    aria-label="Fermer la modale"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <!-- Event Title -->
+                <h2 class="text-lg font-bold text-gray-800 tracking-tight mb-2" id="modalTitle"></h2>
+
+                <!-- Event Date and Time -->
+                <p class="text-sm font-semibold text-gray-900 mb-2" id="modalDate"></p>
+                <p class="text-sm font-semibold text-gray-900 mb-4" id="modalTime"></p>
+
+                <!-- Event Description -->
+                <p class="text-sm leading-relaxed text-gray-700 mb-4" id="modalDescription"></p>
+
+                <!-- Register Button -->
+                <button
+                    id="registerEventBtn"
+                    href="#"
+                    class=" items-center justify-center inline-block px-2 py-2 text-sm font-semibold text-white bg-emerald-500 rounded-full shadow-md hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+                >
+                    Je participe comme bénévole
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+       document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('eventModal');
+        const closeModal = document.getElementById('closeModal');
+        const registerBtn = document.getElementById('registerEventBtn');
+
+        let selectedEventId = null;
+
+        document.querySelectorAll('.readMoreBtn').forEach(button => {
+            button.addEventListener('click', function () {
+                const eventData = JSON.parse(this.getAttribute('data-event-info'));
+
+                // Mettre à jour la modale avec les données de l'événement
+                document.getElementById('modalTitle').textContent = eventData.nom;
+                document.getElementById('modalDate').textContent = `Date : ${eventData.date_evenement}`;
+                document.getElementById('modalTime').textContent = `Heure : ${eventData.heure_evenement}`;
+                document.getElementById('modalDescription').textContent = eventData.texte;
+                document.getElementById('modalImg').src = eventData.img;
+
+                selectedEventId = eventData.ID; 
+
+                // Afficher la modale
+                modal.classList.remove('hidden');
+            });
+        });
+
+        // Bouton "Je participe comme bénévole"
+        registerBtn.addEventListener('click', () => {
+            if (selectedEventId) {
+                fetch('../../Routers/User/registerEvent.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ event_id: selectedEventId }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Inscription réussie !');
+                            location.reload(); // Recharger la page
+                        } else {
+                            alert('Erreur : ' + data.message);
+                        }
+                    })
+                    .catch(error => console.error('Erreur:', error))
+                    .finally(() => {
+                        modal.classList.add('hidden');
+                        selectedEventId = null; // Réinitialiser l'ID sélectionné
+                    });
+            } else {
+                alert('Aucun événement sélectionné.');
+            }
+        });
+
+        // Bouton pour fermer la modale
+        closeModal.addEventListener('click', function () {
+            modal.classList.add('hidden');
+        });
+
+        // Clic en dehors de la modale pour la fermer
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
+    </script>
+
     <!-- Inline Style -->
     <style>
         /* Remove scrollbar for horizontal scrolling */
@@ -251,6 +366,7 @@ class landingPage_view {
     </style>
     <?php
 }
+
 
  public function impact(){
     ?>

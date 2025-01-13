@@ -26,14 +26,14 @@ class homePageUser_view {
 
         if ($card == 0) {
             echo '<div class="flex flex-row gap-6 mr-7">
-                <button id="subscriptionBtn" class="text-base text-[#339989] border-[#339989] border-2 hover:bg-[#339989] hover:text-white px-3 py-1 rounded-full focus:outline-none">
+                <button id="buyCardBtn" class="text-base text-[#339989] border-[#339989] border-2 hover:bg-[#339989] hover:text-white px-3 py-1 rounded-full focus:outline-none">
                 <span>Acheter une carte</span>
                 </button>
                 </div>';
         } else {
             // Remplissage des données de la carte
             echo '<div class="flex flex-row gap-6 mr-7">
-                <button id="subscriptionBtn" class="text-base text-[#339989] border-[#339989] border-2 hover:bg-[#339989] hover:text-white px-3 py-1 rounded-full focus:outline-none">
+                <button id="updateCardBtn" class="text-base text-[#339989] border-[#339989] border-2 hover:bg-[#339989] hover:text-white px-3 py-1 rounded-full focus:outline-none">
                 <span>Mettre à jour la carte</span>
                 </button>
                 <button id="displayCardBtn" data-card-info=\'' . json_encode($card) . '\' class="text-base text-white bg-[#339989] hover:bg-[#226e63] px-3 py-1 rounded-full focus:outline-none">
@@ -62,9 +62,7 @@ class homePageUser_view {
                     <button id="closeModalBtn" class="text-white bg-[#339989] hover:bg-[#226e63] px-4 py-2 rounded-full">Fermer</button>
                 </div>
             </div>
-        </div>
-        ';
-
+        </div>';
     } catch (PDOException $ex) {
         echo "<p class='text-red-500'>Erreur : " . $ex->getMessage() . "</p>";
         return;
@@ -72,31 +70,36 @@ class homePageUser_view {
     ?>
     <!-- Scripts -->
     <script>
-        // Gestionnaire pour ouvrir la modal
-        document.getElementById('displayCardBtn').addEventListener('click', function () {
-            const cardInfo = JSON.parse(this.getAttribute('data-card-info'));
-            document.getElementById('cardId').textContent = cardInfo.ID;
-            document.getElementById('nom').textContent = cardInfo.nom;
-            document.getElementById('prenom').textContent = cardInfo.prenom;
-            document.getElementById('cardType').textContent = cardInfo.type_carte_nom;
-            document.getElementById('cardExpiry').textContent = cardInfo.date_exp;
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('buyCardBtn')?.addEventListener('click', function () {
+                window.location.href = '../User/subscriptionUser.php';
+            });
 
-            const photoElement = document.getElementById('cardPhoto');
-            photoElement.src = cardInfo.photo;
-            photoElement.alt = `Photo de ${cardInfo.nom} ${cardInfo.prenom}`;
+            document.getElementById('updateCardBtn')?.addEventListener('click', function () {
+                window.location.href = '../User/subscriptionUser.php';
+            });
 
-            document.getElementById('cardModal').classList.remove('hidden');
+            document.getElementById('displayCardBtn')?.addEventListener('click', function () {
+                const cardInfo = JSON.parse(this.getAttribute('data-card-info'));
+                document.getElementById('cardId').textContent = cardInfo.ID;
+                document.getElementById('nom').textContent = cardInfo.nom;
+                document.getElementById('prenom').textContent = cardInfo.prenom;
+                document.getElementById('cardType').textContent = cardInfo.type_carte_nom;
+                document.getElementById('cardExpiry').textContent = cardInfo.date_exp;
+
+                const photoElement = document.getElementById('cardPhoto');
+                photoElement.src = cardInfo.photo;
+                photoElement.alt = `Photo de ${cardInfo.nom} ${cardInfo.prenom}`;
+
+                document.getElementById('cardModal').classList.remove('hidden');
+            });
+
+            document.getElementById('closeModalBtn')?.addEventListener('click', function () {
+                document.getElementById('cardModal').classList.add('hidden');
+            });
         });
 
-        // Gestionnaire pour fermer la modal
-        document.getElementById('closeModalBtn').addEventListener('click', function () {
-            document.getElementById('cardModal').classList.add('hidden');
-        });
 
-        // Redirection pour le bouton de mise à jour ou abonnement
-        document.getElementById('subscriptionBtn').addEventListener('click', function () {
-            window.location.href = '../User/subscriptionUser.php';
-        });
     </script>
     <?php
 }
@@ -257,7 +260,7 @@ class homePageUser_view {
     ?>
     <div class="px-4 py-10 max-w-screen-xl mx-auto">
         <h2 class="text-left ml-5 text-xl font-semibold text-zinc-800 mb-6">Offres disponibles</h2>
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto flex flex-col">
             <table id="offersTable" class="w-full bg-offWhite border-separate border-spacing-0 rounded-lg">
                 <thead class="text-left text-zinc-800 bg-offWhite rounded-t-lg">
                     <tr>
@@ -282,7 +285,12 @@ class homePageUser_view {
                     ?>
                 </tbody>
             </table>
+            <button
+                id="allOffersBtn" class="justify-end self-end mt-4 text-sm text-emerald-500 hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-300">
+                Voir toutes les offres →
+            </button>
         </div>
+        
 
         <!-- Pagination -->
         <div class="flex justify-center mt-6 space-x-2">
@@ -332,6 +340,12 @@ class homePageUser_view {
 
                 renderTable(); // Initialisation
             });
+
+             // Ouvrir la page des remises
+            document.getElementById("allOffersBtn").addEventListener("click", () => {
+                window.location.href = '../User/allOffers.php';
+            });
+
         </script>
     </div>
     <?php

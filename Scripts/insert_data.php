@@ -349,9 +349,9 @@ try {
 
         //Données pour la table Menu
         "INSERT INTO Menu (nom, lien) VALUES
-        ('Accueil', ''),
+        ('Accueil', '../general/index.php'),
         ('Nos activités', ''),
-        ('Nos offres', ''),
+        ('Nos offres', '../general/allOffersGeneral.php'),
         ('Nos partenaires', ''),
         ('Contactez nous', '');",
   

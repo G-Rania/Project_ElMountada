@@ -18,8 +18,11 @@ class landingPage_model{
     public function get_events_model(){
         $conn = new database_connection();
         $this_conn = $conn->connect_db();
-        $sql = "SELECT * FROM evenement ORDER BY date_evenement DESC";
+
+        $actualDate = date(format: 'Y-m-d H:i:s');
+        $sql = "SELECT * FROM evenement WHERE date_evenement >= :actualDate  ORDER BY date_evenement DESC";
         $request = $this_conn->prepare($sql);
+        $request->bindParam(':actualDate', $actualDate, PDO::PARAM_STR);
         $request->execute();
         $result = $request->fetchAll(PDO::FETCH_ASSOC);
         $conn->disconnect_db( $this_conn );

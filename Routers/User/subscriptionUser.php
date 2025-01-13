@@ -1,5 +1,5 @@
 <?php
- require_once('../../Controllers/User/subscriptionUser_controller.php');
+require_once('../../Controllers/User/subscriptionUser_controller.php');
 
 session_start();
 

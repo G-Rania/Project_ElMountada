@@ -48,7 +48,6 @@ class users_view {
                                                     <span>Voir carte</span>
                                                 </button>";
                                         } else {
-                                            // Affiche un message si l'utilisateur n'est pas membre
                                             echo "<span class='text-red-500'>Non membre</span>";
                                         }
                                     echo "</td></tr>";
