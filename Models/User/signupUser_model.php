@@ -46,7 +46,7 @@ class signupUser_model{
 
         if ($request->rowCount() > 0) {
             $_SESSION['username'] = $username;
-            $_SESSION['ID'] = $idUser;
+            $_SESSION['user_id'] = $idUser;
             header("Location: ./homePageUser.php");
             return true; 
         } else {

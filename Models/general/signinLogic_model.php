@@ -18,7 +18,11 @@ class signinLogic_model{
         
         if (password_verify($password, $row['password'])) {
             $_SESSION['username'] = $row['username'];
-            $_SESSION['ID'] = $row['ID'];
+ 
+            //depends on the type of user : admin, partenaire, simple user
+            $session_id_key = $table . '_id'; 
+            $_SESSION[$session_id_key] = $row['ID'];
+
             header("Location: $router");
             $conn->disconnect_db($this_conn);
             exit();

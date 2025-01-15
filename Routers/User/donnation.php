@@ -3,7 +3,8 @@
 
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_SESSION['username']) && isset($_SESSION['user_id']) ){
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         if (
             isset($_POST['categorieAide']) &&
@@ -11,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ) {
             $controller = new donnation_controller();
             $controller->send_donnation_controller(
-                $_SESSION['ID'],
+                $_SESSION['user_id'],
                 $_POST['categorieAide'],
                 $_POST['num_ccp'],
                 $_POST['montant'],
@@ -23,7 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (Exception $ex) {
         echo "<p>Erreur : " . $ex->getMessage() . "</p>";
     }
-}else {
-    $controller = new donnation_controller();
-    $controller->display_donnationPage_controller();
+    }else {
+        $controller = new donnation_controller();
+        $controller->display_donnationPage_controller();
+    }
+
+}else{
+    header("Location: ./signinUser.php");
 }

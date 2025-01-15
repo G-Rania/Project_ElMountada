@@ -2,7 +2,7 @@
  require_once('../../Controllers/Admin/cardRequests_controller.php');
 
  session_start();
- if (isset($_SESSION['username']) && isset($_SESSION['ID']) ){
+ if (isset($_SESSION['username']) && isset($_SESSION['admin_id']) ){
      $instance = new cardRequests_controller();
      $instance->display_cardRequests_controller();
      if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
