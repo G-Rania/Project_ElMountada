@@ -34,12 +34,14 @@ class cardOffers_view {
                                 try {
                                     $controller = new cardOffers_controller();
                                     $cardOffers = $controller->get_cardOffers_controller($idCard,$idComptePartenaire);
-                                    foreach ($cardOffers as $cardOffer) {
-                                        echo "<tr>
-                                            <td class='px-6 py-4 border-b border-[#67b7a1]'>" . $cardOffer["nom_offre"] . "</td>
-                                            <td class='px-6 py-4 border-b border-[#67b7a1]'>" . $cardOffer["pourcentage"] . "%</td>
-                                            <td class='px-6 py-4 border-b border-[#67b7a1]'>" . $cardOffer["wilaya"] . "</td>
-                                            </tr>";
+                                    if($cardOffers){
+                                        foreach ($cardOffers as $cardOffer) {
+                                            echo "<tr>
+                                                <td class='px-6 py-4 border-b border-[#67b7a1]'>" . $cardOffer["nom_offre"] . "</td>
+                                                <td class='px-6 py-4 border-b border-[#67b7a1]'>" . $cardOffer["pourcentage"] . "%</td>
+                                                <td class='px-6 py-4 border-b border-[#67b7a1]'>" . $cardOffer["wilaya"] . "</td>
+                                                </tr>";
+                                        }
                                     }
                                 } catch (PDOException $ex) {
                                     echo "<p class='text-red-500'>Erreur : " . $ex->getMessage() . "</p>";
