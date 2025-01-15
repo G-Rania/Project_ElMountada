@@ -10,6 +10,11 @@ class partenairesAdmin_controller{
         return $partenaires;
     }
 
+    public function add_partenaire_controller ($nom, $description, $logo, $categorie, $ville, $email){
+        $model = new partenairesAdmin_model();
+        $model->add_partenaire_model($nom, $description, $logo, $categorie, $ville, $email);
+    }
+
     public function display_partenairesAdmin_controller(){
         $view = new partenairesAdmin_view();
         $view->display_partenairesAdmin_view();
